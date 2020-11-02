@@ -16,7 +16,7 @@ import java.util.TreeSet;
 public class Ligue implements Serializable, Comparable<Ligue>
 {
 	private static final long serialVersionUID = 1L;
-	private int id = -1;
+	int id = -1;
 	private String nom;
 	private SortedSet<Employe> employes;
 	private Employe administrateur;

@@ -17,7 +17,7 @@ public class Employe implements Serializable, Comparable<Employe>
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, int heurearrivee, int heuredepart )
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
@@ -25,6 +25,7 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.password = password;
 		this.mail = mail;
 		this.ligue = ligue;
+		this.gestionPersonnel = gestionPersonnel;
 	}
 	
 	/**
@@ -149,7 +150,12 @@ public class Employe implements Serializable, Comparable<Employe>
 	 * récupère les droits d'administration sur sa ligue.
 	 */
 	
-	public void remove()
+	public gestionPersonnel getgestionPersonnel()
+	{
+		return gestionPersonnel;
+	}
+	
+ 	public void remove()
 	{
 		Employe root = GestionPersonnel.getGestionPersonnel().getRoot();
 		if (this != root)
