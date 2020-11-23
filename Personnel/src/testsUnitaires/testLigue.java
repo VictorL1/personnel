@@ -2,6 +2,8 @@ package testsUnitaires;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
+
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +25,7 @@ class testLigue
 	void addEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = gestionPersonnel.addLigue("Flechettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", "09/11/2020", null); 
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty",  LocalDate.parse("2020-09-11"),  LocalDate.parse("2020-12-09")); 
 		assertEquals(employe, ligue.getEmployes().first());
 	}
 	
@@ -63,7 +65,7 @@ class testLigue
 	void removeEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = this.gestionPersonnel.addLigue("Flechettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", "09/11/2020", null); 
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty",  LocalDate.parse("09/11/2020"), null); 
 		assertTrue(ligue.getEmployes().contains(employe));
 		ligue.setAdministrateur(employe);
 		employe.remove();
@@ -75,7 +77,7 @@ class testLigue
 	void checkPassword() throws SauvegardeImpossible
 	{
 		Ligue ligue = this.gestionPersonnel.addLigue("Flechettes"); 
-		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", "09/11/2020", null);
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2020-09-10") , null);
 		assertTrue(employe.checkPassword("azerty"));
 		assertFalse(employe.checkPassword(null));
 		assertFalse(employe.checkPassword("azertyu"));
@@ -85,7 +87,7 @@ class testLigue
 	void setAdmin() throws SauvegardeImpossible
 	{
 		Ligue ligue = this.gestionPersonnel.addLigue("Flechettes"); 
-		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", "09/11/2020", null);
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty",  LocalDate.parse("09/11/2020"), null);
 		ligue.setAdministrateur(employe);
 		assertTrue(employe.estAdmin(ligue));
 	}

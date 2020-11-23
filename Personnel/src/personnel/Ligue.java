@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -108,7 +109,7 @@ public class Ligue implements Serializable, Comparable<Ligue>
 	 * @return l'employe cree. 
 	 */
 
-	public Employe addEmploye(String nom, String prenom, String mail, String password, String datearrivée, String datedépart)
+	public Employe addEmploye(String nom, String prenom, String mail, String password, LocalDate datedepart, LocalDate datearrivee)
 	{
 		Employe employe = new Employe(this.gestionPersonnel, this, nom, prenom, mail, password);
 		employes.add(employe);
