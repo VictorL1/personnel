@@ -65,7 +65,7 @@ class testLigue
 	void removeEmploye() throws SauvegardeImpossible
 	{
 		Ligue ligue = this.gestionPersonnel.addLigue("Flechettes");
-		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty",  LocalDate.parse("09/11/2020"), null); 
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty",  null, null); 
 		assertTrue(ligue.getEmployes().contains(employe));
 		ligue.setAdministrateur(employe);
 		employe.remove();
@@ -87,9 +87,29 @@ class testLigue
 	void setAdmin() throws SauvegardeImpossible
 	{
 		Ligue ligue = this.gestionPersonnel.addLigue("Flechettes"); 
-		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty",  LocalDate.parse("09/11/2020"), null);
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty",  LocalDate.parse("2020-09-11"), null);
 		ligue.setAdministrateur(employe);
 		assertTrue(employe.estAdmin(ligue));
 	}
 	
+	@Test
+	void GetArrive() throws SauvegardeImpossible
+	{
+		Ligue ligue = this.gestionPersonnel.addLigue("Flechettes");
+		LocalDate date = LocalDate.of(2020, 01, 01);
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2020-09-11"), null);
+		employe.setdatearrivee(date);
+		assertEquals(employe.getdatearrivee(), date);
+	}
+
+
+	@Test
+	void GetDepart() throws SauvegardeImpossible
+	{
+		Ligue ligue = this.gestionPersonnel.addLigue("Flechettes");
+		Employe employe = ligue.addEmploye("Bouchard", "Gerard", "g.bouchard@gmail.com", "azerty", LocalDate.parse("2020-09-11"), null);
+		LocalDate date = LocalDate.of(2020, 01, 21);
+		employe.setdatedepart(date);
+		assertEquals(employe.getdatedepart(), date);
+	}
 }
