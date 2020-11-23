@@ -1,6 +1,7 @@
 package personnel;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 /**
  * EmployÃ© d'une ligue hÃ©bergÃ©e par la M2L. Certains peuvent 
@@ -13,11 +14,12 @@ import java.io.Serializable;
 public class Employe implements Serializable, Comparable<Employe>
 {
 	private static final long serialVersionUID = 4795721718037994734L;
-	private String nom, prenom, password, mail, datedépart, datearrivée;
+	private String nom, prenom, password, mail;
+	private LocalDate datedepart, datearrivee;
 	private Ligue ligue;
 	private GestionPersonnel gestionPersonnel;
 	
-	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password, String datedépart, String datearrivée)
+	Employe(GestionPersonnel gestionPersonnel, Ligue ligue, String nom, String prenom, String mail, String password)
 	{
 		this.gestionPersonnel = gestionPersonnel;
 		this.nom = nom;
@@ -25,8 +27,6 @@ public class Employe implements Serializable, Comparable<Employe>
 		this.password = password;
 		this.mail = mail;
 		this.ligue = ligue;
-		this.setDatedépart(datedépart);
-		this.setDatearrivée(datearrivée);
 	}
 	
 	/**
@@ -184,19 +184,19 @@ public class Employe implements Serializable, Comparable<Employe>
 		return res + ")";
 	}
 
-	public String getDatearrivée() {
-		return datearrivée;
+	public LocalDate getdatearrivee() {
+		return datearrivee;
 	}
 
-	public void setDatearrivée(String datearrivée) {
-		this.datearrivée = datearrivée;
+	public void setdatearrivee(LocalDate datearrivee) {
+		this.datearrivee = datearrivee;
 	}
 
-	public String getDatedépart() {
-		return datedépart;
+	public LocalDate getdatedepart() {
+		return datedepart;
 	}
 
-	public void setDatedépart(String datedépart) {
-		this.datedépart = datedépart;
+	public void setdatedepart(LocalDate datedepart) {
+		this.datedepart = datedepart;
 	}
 }
