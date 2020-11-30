@@ -57,9 +57,20 @@ public class EmployeConsole
 	}
 	private Option changerDateDepart(final Employe employe)
 	{
-		return new Option("Changer la date de départ", "dd", () -> 
-		{System.out.println(employe.getdatedepart());
-		employe.setdatedepart(LocalDate.parse(getString("Nouvelle date : ")));});
+		return new Option("Changer la date de départ", "dd",
+				() -> {
+					try
+					{
+						{System.out.println(employe.getdatedepart());
+						employe.setdatedepart(LocalDate.parse(getString("Nouvelle date : ")));
+						throw new ErreurDate();
+						}	
+					}
+					catch (ErreurDate e){
+						System.out.println(e);
+					}
+				}
+		);
 	}
 	private Option changerDateArrivee(final Employe employe)
 	{
@@ -71,12 +82,12 @@ public class EmployeConsole
 						{System.out.println(employe.getdatearrivee());
 						employe.setdatearrivee(LocalDate.parse(getString("Nouvelle date : ")));
 						throw new ErreurDate();
-					}
+						}
 					}
 					catch (ErreurDate e){
 						System.out.println(e);
 					}
 				}
-				);
+		);
 	}
 }
