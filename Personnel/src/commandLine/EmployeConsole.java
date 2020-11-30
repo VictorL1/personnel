@@ -8,6 +8,7 @@ import commandLineMenus.ListOption;
 import commandLineMenus.Menu;
 import commandLineMenus.Option;
 import personnel.Employe;
+import personnel.ErreurDate;
 
 public class EmployeConsole 
 {
@@ -29,8 +30,8 @@ public class EmployeConsole
 			menu.add(changerPrenom(employe));
 			menu.add(changerMail(employe));
 			menu.add(changerPassword(employe));
-			menu.add(changerDateDepart(employe));
 			menu.add(changerDateArrivee(employe));
+			menu.add(changerDateDepart(employe));
 			menu.addBack("q");
 			return menu;
 	}
@@ -60,11 +61,22 @@ public class EmployeConsole
 		{System.out.println(employe.getdatedepart());
 		employe.setdatedepart(LocalDate.parse(getString("Nouvelle date : ")));});
 	}
-	private Option changerDateArrivee(final Employe employe)
+	private Option changerDateArrivee(final Employe employe) throws ErreurDate
 	{
-		return new Option("Changer la date d'arrivée", "da", () -> 
-		{System.out.println(employe.getdatearrivee());
-		employe.setdatearrivee(LocalDate.parse(getString("Nouvelle date : ")));});
+		return new Option("Changer la date d'arrivée", "da",
+				() ->{
+					try 
+					{
+						 
+						{System.out.println(employe.getdatearrivee());
+						employe.setdatearrivee(LocalDate.parse(getString("Nouvelle date : ")));
+						throw new ErreurDate();
+					}
+					}
+					catch (ErreurDate e){
+						System.out.println(e);
+					}
+				}
+				);
 	}
-
 }
