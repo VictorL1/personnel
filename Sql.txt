@@ -1,0 +1,22 @@
+CREATE TABLE EMPLOYE(
+   idEmploye VARCHAR(50) PRIMARY KEY,
+   nom VARCHAR(50),
+   prenom VARCHAR(50),
+   password VARCHAR(50),
+   mail VARCHAR(50),
+   dateDepart VARCHAR(50),
+   dateArrivee VARCHAR(50),
+   estAdmin VARCHAR(50)
+);
+
+CREATE TABLE LIGUE(
+   idLigue VARCHAR(50) PRIMARY KEY,
+   nom VARCHAR(50),
+   idEmploye VARCHAR(50) REFERENCES EMPLOYE(idEmploye) NOT NULL
+);
+
+CREATE TABLE APPARTIENT(
+   idEmploye VARCHAR(50) REFERENCES EMPLOYE(idEmploye) NOT NULL,
+   idLigue VARCHAR(50) REFERENCES LIGUE(idLigue) NOT NULL,
+   PRIMARY KEY(idEmploye, idLigue)
+);
